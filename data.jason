@@ -13,7 +13,7 @@
     },
     {
       "name": "Literature Review",
-      "color": "blue",
+      "color": "pink",
       "progress": 70,
       "start": 2,
       "duration": 3
@@ -27,14 +27,14 @@
     },
     {
       "name": "Prototype",
-      "color": "orange",
+      "color": "red",
       "progress": 20,
       "start": 4,
       "duration": 3
     },
     {
       "name": "Testing",
-      "color": "red",
+      "color": "cyan",
       "progress": 0,
       "start": 5,
       "duration": 2
