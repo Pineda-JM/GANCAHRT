@@ -28,7 +28,7 @@
     {
       "name": "Prototype",
       "color": "red",
-      "progress": 10,
+      "progress": 0,
       "start": 1,
       "duration": 4
     },
