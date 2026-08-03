@@ -1,1 +1,43 @@
-
+{
+  "project": "Chapter 3 Timeline",
+  "startDate": "2026-08-03",
+  "endDate": "2026-08-22",
+  "progress": 48,
+  "tasks": [
+    {
+      "name": "Introduction",
+      "color": "green",
+      "progress": 100,
+      "start": 1,
+      "duration": 2
+    },
+    {
+      "name": "Literature Review",
+      "color": "blue",
+      "progress": 70,
+      "start": 2,
+      "duration": 3
+    },
+    {
+      "name": "Methodology",
+      "color": "purple",
+      "progress": 50,
+      "start": 3,
+      "duration": 3
+    },
+    {
+      "name": "Prototype",
+      "color": "orange",
+      "progress": 20,
+      "start": 4,
+      "duration": 3
+    },
+    {
+      "name": "Testing",
+      "color": "red",
+      "progress": 0,
+      "start": 5,
+      "duration": 2
+    }
+  ]
+}
