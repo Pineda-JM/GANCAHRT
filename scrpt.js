@@ -1,198 +1,290 @@
-// ===========================
-// GANTT CHART DASHBOARD
-// ===========================
+/*
+========================================================
+RESEARCH GANTT CHART
+GPS-BASED HIKER TRACKING & MONITORING SYSTEM
 
-const addTaskBtn = document.getElementById("addTask");
-const todayBtn = document.getElementById("todayBtn");
-const taskCount = document.getElementById("taskCount");
-const ganttBody = document.getElementById("ganttBody");
+PROJECT PERIOD:
+03 AUGUST 2026 - 22 AUGUST 2026
 
-// Initial task count
-updateTaskCount();
-
-// ---------------------------
-// Add Task
-// ---------------------------
-addTaskBtn.addEventListener("click", () => {
-
-    const taskName = prompt("Task Name:");
-
-    if (!taskName) return;
-
-    const color = prompt(
-        "Color (green, blue, purple, orange, red):",
-        "blue"
-    );
-
-    const progress = prompt(
-        "Progress (0-100):",
-        "0"
-    );
-
-    const start = parseInt(prompt(
-        "Start Column (1-6):",
-        "1"
-    ));
-
-    const span = parseInt(prompt(
-        "Duration (columns):",
-        "2"
-    ));
-
-    addTask(taskName, color, progress, start, span);
-
-});
+CURRENT PROJECT DATE:
+10 AUGUST 2026
+========================================================
+*/
 
 
-// ---------------------------
-// Function Add Task
-// ---------------------------
+const tasks = [
 
-function addTask(name, color, progress, start, span){
+    {
+        date: "03 Aug",
+        task: "Review Chapter III requirements and align methodology",
+        progress: 100,
+        status: "completed"
+    },
 
-    const row = document.createElement("tr");
+    {
+        date: "04 Aug",
+        task: "Revise Research Design",
+        progress: 100,
+        status: "completed"
+    },
 
-    // Task Name
-    let html = `<td>${name}</td>`;
+    {
+        date: "05 Aug",
+        task: "Revise System Development Approach",
+        progress: 100,
+        status: "completed"
+    },
 
-    // Timeline Columns
-    for(let i=1;i<=6;i++){
+    {
+        date: "06 Aug",
+        task: "Identify hardware and software components",
+        progress: 100,
+        status: "completed"
+    },
 
-        if(i===start){
+    {
+        date: "07 Aug",
+        task: "Develop System Architecture / Block Diagram",
+        progress: 100,
+        status: "completed"
+    },
 
-            html += `
-            <td colspan="${span}">
-                <div class="task ${color}">
-                    ${progress}%
+    {
+        date: "08 Aug",
+        task: "Revise Research Instrument / Evaluation Criteria",
+        progress: 100,
+        status: "completed"
+    },
+
+    {
+        date: "09 Aug",
+        task: "Prepare GPS accuracy testing procedure",
+        progress: 80,
+        status: "completed"
+    },
+
+    {
+        date: "10 Aug",
+        task: "Prepare LoRa communication-range testing procedure",
+        progress: 50,
+        status: "current"
+    },
+
+    {
+        date: "11 Aug",
+        task: "Prepare offline communication testing using Meshtastic",
+        progress: 35,
+        status: "partial"
+    },
+
+    {
+        date: "12 Aug",
+        task: "Develop Functionality testing procedure",
+        progress: 30,
+        status: "partial"
+    },
+
+    {
+        date: "13 Aug",
+        task: "Develop Reliability testing procedure",
+        progress: 25,
+        status: "partial"
+    },
+
+    {
+        date: "14 Aug",
+        task: "Develop Portability evaluation procedure",
+        progress: 20,
+        status: "partial"
+    },
+
+    {
+        date: "15 Aug",
+        task: "Define testing locations and environmental conditions",
+        progress: 15,
+        status: "unfinished"
+    },
+
+    {
+        date: "16 Aug",
+        task: "Plan urban, suburban and mountainous testing",
+        progress: 10,
+        status: "unfinished"
+    },
+
+    {
+        date: "17 Aug",
+        task: "Revise data-gathering procedure",
+        progress: 10,
+        status: "unfinished"
+    },
+
+    {
+        date: "18 Aug",
+        task: "Revise data recording and analysis procedure",
+        progress: 5,
+        status: "unfinished"
+    },
+
+    {
+        date: "19 Aug",
+        task: "Align Chapter III procedures with research objectives",
+        progress: 5,
+        status: "unfinished"
+    },
+
+    {
+        date: "20 Aug",
+        task: "Check methodology against Scope and Limitations",
+        progress: 0,
+        status: "unfinished"
+    },
+
+    {
+        date: "21 Aug",
+        task: "Complete Chapter III proofreading and formatting",
+        progress: 0,
+        status: "unfinished"
+    },
+
+    {
+        date: "22 Aug",
+        task: "Final Chapter III revision and submission",
+        progress: 0,
+        status: "unfinished"
+    }
+
+];
+
+
+/*
+========================================================
+UPDATE STATISTICS
+========================================================
+*/
+
+function updateStatistics() {
+
+    const completed =
+        tasks.filter(t => t.progress >= 80).length;
+
+    const current =
+        tasks.filter(t => t.status === "current").length;
+
+    const partial =
+        tasks.filter(
+            t => t.progress > 0 && t.progress < 80
+        ).length;
+
+
+    const total =
+        tasks.reduce(
+            (sum, task) => sum + task.progress,
+            0
+        );
+
+
+    const overall =
+        Math.round(total / tasks.length);
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent = completed;
+
+
+    document.getElementById(
+        "progressCount"
+    ).textContent = current;
+
+
+    document.getElementById(
+        "partialCount"
+    ).textContent = partial;
+
+
+    document.getElementById(
+        "overallProgress"
+    ).textContent = overall + "%";
+}
+
+
+/*
+========================================================
+DAILY PROGRESS LIST
+========================================================
+*/
+
+function createDailyList() {
+
+    const container =
+        document.getElementById("dailyList");
+
+    tasks.forEach(task => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "daily-item " + task.status;
+
+
+        item.innerHTML = `
+
+            <div class="daily-left">
+
+                <div class="daily-date">
+                    ${task.date}
                 </div>
-            </td>`;
 
-            i += span-1;
+                <div class="daily-task">
+                    ${task.task}
+                </div>
 
-        }else{
+            </div>
 
-            html += "<td></td>";
+            <div class="daily-percent">
+                ${task.progress}%
+            </div>
 
-        }
+        `;
 
-    }
+        container.appendChild(item);
 
-    row.innerHTML = html;
-
-    ganttBody.appendChild(row);
-
-    updateTaskCount();
+    });
 
 }
 
 
-// ---------------------------
-// Update Counter
-// ---------------------------
+/*
+========================================================
+CURRENT DATE
+========================================================
 
-function updateTaskCount(){
+For your current Gantt schedule we intentionally use
+10 AUGUST 2026 as the active research date.
+========================================================
+*/
 
-    taskCount.innerText =
-        ganttBody.querySelectorAll("tr").length;
+function setCurrentDate() {
+
+    const dateElement =
+        document.getElementById("currentDate");
+
+    dateElement.textContent =
+        "10 AUG 2026";
 
 }
 
 
-// ---------------------------
-// Today Button
-// ---------------------------
+/*
+========================================================
+START
+========================================================
+*/
 
-todayBtn.addEventListener("click",()=>{
+updateStatistics();
 
-    alert(
-`Today's Date
+createDailyList();
 
-${new Date().toDateString()}`
-    );
-
-});
-
-
-// ---------------------------
-// Double Click = Delete Task
-// ---------------------------
-
-ganttBody.addEventListener("dblclick",(e)=>{
-
-    const row=e.target.closest("tr");
-
-    if(!row) return;
-
-    if(confirm("Delete this task?")){
-
-        row.remove();
-
-        updateTaskCount();
-
-    }
-
-});
-
-
-// ---------------------------
-// Progress Animation
-// ---------------------------
-
-const progressBar =
-document.querySelector(".progress-bar");
-
-let width=0;
-
-const interval=setInterval(()=>{
-
-    width++;
-
-    progressBar.style.width=width+"%";
-
-    if(width>=48){
-
-        clearInterval(interval);
-
-    }
-
-},20);
-
-
-// ---------------------------
-// Hover Effect
-// ---------------------------
-
-document.querySelectorAll(".task").forEach(task=>{
-
-    task.addEventListener("mouseenter",()=>{
-
-        task.style.transform="scale(1.05)";
-        task.style.transition=".25s";
-
-    });
-
-    task.addEventListener("mouseleave",()=>{
-
-        task.style.transform="scale(1)";
-
-    });
-
-});
-
-
-// ---------------------------
-// Keyboard Shortcut
-// Ctrl + N = Add Task
-// ---------------------------
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.ctrlKey && e.key==="n"){
-
-        e.preventDefault();
-
-        addTaskBtn.click();
-
-    }
-
-});
+setCurrentDate();
