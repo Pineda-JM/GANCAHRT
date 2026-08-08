@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gantt Chart Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+    <title>Research Gantt Chart</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -20,220 +17,381 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <div class="background"></div>
 
 <header>
+    <div class="brand">
+        <div class="brand-icon">▦</div>
 
-<div class="logo">
+        <div>
+            <h1>RESEARCH GANTT</h1>
+            <p>Chapter III — Methodology Revision</p>
+        </div>
+    </div>
 
-<i class="fa-solid fa-chart-gantt"></i>
-
-<div>
-<h1>GANTT CHART</h1>
-<p>Project Timeline Dashboard</p>
-</div>
-
-</div>
-
-<div class="actions">
-
-<button id="todayBtn">
-<i class="fa-solid fa-calendar-day"></i>
-Today
-</button>
-
-<button id="addTask">
-<i class="fa-solid fa-plus"></i>
-Add Task
-</button>
-
-</div>
-
+    <div class="header-date">
+        <span>PROJECT DATE</span>
+        <strong>03 AUG — 22 AUG 2026</strong>
+    </div>
 </header>
 
-<section class="cards">
 
-<div class="card">
+<section class="project-info">
 
-<i class="fa-solid fa-calendar"></i>
+    <div class="project-title">
+        <span>RESEARCH PROJECT</span>
+        <h2>GPS-Based Hiker Tracking & Monitoring System</h2>
+        <p>
+            Using LoRa ESP32 and Meshtastic
+        </p>
+    </div>
 
-<h3>Project Start</h3>
-
-<p>03 Aug 2026</p>
-
-</div>
-
-<div class="card">
-
-<i class="fa-solid fa-flag-checkered"></i>
-
-<h3>Project End</h3>
-
-<p>22 Aug 2026</p>
-
-</div>
-
-<div class="card">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<h3>Progress</h3>
-
-<div class="progress">
-
-<div class="progress-bar"></div>
-
-</div>
-
-<span>48%</span>
-
-</div>
-
-<div class="card">
-
-<i class="fa-solid fa-list-check"></i>
-
-<h3>Total Tasks</h3>
-
-<p id="taskCount">5</p>
-
-</div>
+    <div class="today-box">
+        <span>CURRENT DATE</span>
+        <strong id="currentDate">10 AUG 2026</strong>
+        <small>Methodology revision in progress</small>
+    </div>
 
 </section>
 
-<section class="gantt-container">
 
-<table>
+<section class="stats">
 
-<thead>
+    <div class="stat-card">
+        <span>COMPLETED</span>
+        <strong id="completedCount">0</strong>
+        <small>Tasks</small>
+    </div>
 
-<tr>
+    <div class="stat-card">
+        <span>IN PROGRESS</span>
+        <strong id="progressCount">0</strong>
+        <small>Tasks</small>
+    </div>
 
-<th>Milestones</th>
+    <div class="stat-card">
+        <span>PARTIAL</span>
+        <strong id="partialCount">0</strong>
+        <small>Tasks</small>
+    </div>
 
-<th>03 Aug</th>
-
-<th>08 Aug</th>
-
-<th>10 Aug</th>
-
-<th>15 Aug</th>
-
-<th>17 Aug</th>
-
-<th>22 Aug</th>
-
-</tr>
-
-</thead>
-
-<tbody id="ganttBody">
-
-<tr>
-
-<td>Introduction</td>
-
-<td colspan="2">
-<div class="task green">
-70%
-</div>
-</td>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-</tr>
-
-<tr>
-
-<td>Literature Review</td>
-
-<td></td>
-
-<td colspan="3">
-<div class="task blue">
-40%
-</div>
-</td>
-
-<td></td>
-
-<td></td>
-
-</tr>
-
-<tr>
-
-<td>Methodology</td>
-
-<td></td>
-
-<td></td>
-
-<td colspan="3">
-<div class="task purple">
-40%
-</div>
-</td>
-
-<td></td>
-
-</tr>
-
-<tr>
-
-<td>Prototype</td>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-<td colspan="3">
-<div class="task orange">
-20%
-</div>
-</td>
-
-</tr>
-
-<tr>
-
-<td>Testing</td>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-<td></td>
-
-<td colspan="2">
-<div class="task red">
-0%
-</div>
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+    <div class="stat-card">
+        <span>OVERALL</span>
+        <strong id="overallProgress">0%</strong>
+        <small>Research progress</small>
+    </div>
 
 </section>
+
+
+<div class="legend">
+
+    <div>
+        <span class="legend-color completed"></span>
+        Completed
+    </div>
+
+    <div>
+        <span class="legend-color current"></span>
+        In Progress
+    </div>
+
+    <div>
+        <span class="legend-color partial"></span>
+        Partial Progress
+    </div>
+
+    <div>
+        <span class="legend-color unfinished"></span>
+        Not Started
+    </div>
+
+</div>
+
+
+<section class="gantt-wrapper">
+
+    <div class="gantt">
+
+        <!-- LEFT TASK COLUMN -->
+
+        <div class="task-column">
+
+            <div class="task-header">
+                METHODOLOGY / CHAPTER III
+            </div>
+
+            <div class="task" data-id="1">
+                <strong>01</strong>
+                <span>Review Chapter III requirements</span>
+            </div>
+
+            <div class="task" data-id="2">
+                <strong>02</strong>
+                <span>Revise Research Design</span>
+            </div>
+
+            <div class="task" data-id="3">
+                <strong>03</strong>
+                <span>System Development Approach</span>
+            </div>
+
+            <div class="task" data-id="4">
+                <strong>04</strong>
+                <span>Hardware & Software Components</span>
+            </div>
+
+            <div class="task" data-id="5">
+                <strong>05</strong>
+                <span>System Architecture / Block Diagram</span>
+            </div>
+
+            <div class="task" data-id="6">
+                <strong>06</strong>
+                <span>Research Instrument / Evaluation</span>
+            </div>
+
+            <div class="task" data-id="7">
+                <strong>07</strong>
+                <span>GPS Accuracy Testing</span>
+            </div>
+
+            <div class="task" data-id="8">
+                <strong>08</strong>
+                <span>LoRa Communication Range</span>
+            </div>
+
+            <div class="task" data-id="9">
+                <strong>09</strong>
+                <span>Offline Meshtastic Communication</span>
+            </div>
+
+            <div class="task" data-id="10">
+                <strong>10</strong>
+                <span>Functionality Testing</span>
+            </div>
+
+            <div class="task" data-id="11">
+                <strong>11</strong>
+                <span>Reliability Testing</span>
+            </div>
+
+            <div class="task" data-id="12">
+                <strong>12</strong>
+                <span>Portability Evaluation</span>
+            </div>
+
+            <div class="task" data-id="13">
+                <strong>13</strong>
+                <span>Testing Locations & Conditions</span>
+            </div>
+
+            <div class="task" data-id="14">
+                <strong>14</strong>
+                <span>Urban / Suburban / Mountain Testing</span>
+            </div>
+
+            <div class="task" data-id="15">
+                <strong>15</strong>
+                <span>Data Gathering Procedure</span>
+            </div>
+
+            <div class="task" data-id="16">
+                <strong>16</strong>
+                <span>Data Recording & Analysis</span>
+            </div>
+
+            <div class="task" data-id="17">
+                <strong>17</strong>
+                <span>Align Chapter III with Objectives</span>
+            </div>
+
+            <div class="task" data-id="18">
+                <strong>18</strong>
+                <span>Check Scope & Limitations</span>
+            </div>
+
+            <div class="task" data-id="19">
+                <strong>19</strong>
+                <span>Proofreading & Formatting</span>
+            </div>
+
+            <div class="task" data-id="20">
+                <strong>20</strong>
+                <span>Final Revision & Submission</span>
+            </div>
+
+        </div>
+
+
+        <!-- TIMELINE -->
+
+        <div class="timeline">
+
+            <div class="dates">
+
+                <div>03</div>
+                <div>04</div>
+                <div>05</div>
+                <div>06</div>
+                <div>07</div>
+                <div class="today">08</div>
+                <div>09</div>
+                <div class="active-date">10</div>
+                <div>11</div>
+                <div>12</div>
+                <div>13</div>
+                <div>14</div>
+                <div>15</div>
+                <div>16</div>
+                <div>17</div>
+                <div>18</div>
+                <div>19</div>
+                <div>20</div>
+                <div>21</div>
+                <div>22</div>
+
+            </div>
+
+
+            <div class="timeline-grid">
+
+                <!-- 20 days × 20 tasks -->
+
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+                <div class="grid-row"></div>
+
+            </div>
+
+
+            <!-- GANTT BARS -->
+
+            <div class="bars">
+
+                <div class="bar completed" style="--start:1;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar completed" style="--start:2;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar completed" style="--start:3;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar completed" style="--start:4;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar completed" style="--start:5;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar completed" style="--start:6;--width:1;">
+                    100%
+                </div>
+
+                <div class="bar partial" style="--start:7;--width:1;">
+                    80%
+                </div>
+
+                <div class="bar current" style="--start:8;--width:1;">
+                    50%
+                </div>
+
+                <div class="bar partial" style="--start:9;--width:1;">
+                    35%
+                </div>
+
+                <div class="bar partial" style="--start:10;--width:1;">
+                    30%
+                </div>
+
+                <div class="bar partial" style="--start:11;--width:1;">
+                    25%
+                </div>
+
+                <div class="bar partial" style="--start:12;--width:1;">
+                    20%
+                </div>
+
+                <div class="bar unfinished" style="--start:13;--width:1;">
+                    15%
+                </div>
+
+                <div class="bar unfinished" style="--start:14;--width:1;">
+                    10%
+                </div>
+
+                <div class="bar unfinished" style="--start:15;--width:1;">
+                    10%
+                </div>
+
+                <div class="bar unfinished" style="--start:16;--width:1;">
+                    5%
+                </div>
+
+                <div class="bar unfinished" style="--start:17;--width:1;">
+                    5%
+                </div>
+
+                <div class="bar unfinished" style="--start:18;--width:1;">
+                    0%
+                </div>
+
+                <div class="bar unfinished" style="--start:19;--width:1;">
+                    0%
+                </div>
+
+                <div class="bar unfinished" style="--start:20;--width:1;">
+                    0%
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="daily-progress">
+
+    <div class="section-title">
+        <span>DAILY REVISION</span>
+        <h2>August 03 — August 22</h2>
+    </div>
+
+    <div class="daily-list" id="dailyList"></div>
+
+</section>
+
 
 <footer>
-
-<p>Developed with HTML • CSS • JavaScript</p>
-
+    GPS-Based Hiker Tracking & Monitoring System
+    <span>•</span>
+    Chapter III Methodology
 </footer>
+
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
